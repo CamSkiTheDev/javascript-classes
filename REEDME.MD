@@ -14,19 +14,19 @@ class Animal {
   }
 
   get name() {
-    return console.log(this._name);
+    return this._name;
   }
 
   get age() {
-    return console.log(this._age);
+    return this._age;
   }
 
   set name(name) {
     this._name = name;
   }
 
-  speak() {
-    return console.log(`${this._name} makes a noise`);
+  eat() {
+    return `${this._name} - Om Nom Nom Nom!`;
   }
 }
 ```
@@ -41,19 +41,19 @@ const Animal = class {
   }
 
   get name() {
-    return console.log(this._name);
+    return this._name;
   }
 
   get age() {
-    return console.log(this._age);
+    return this._age;
   }
 
   set name(name) {
     this._name = name;
   }
 
-  speak() {
-    return console.log(`${this._name} makes a noise`);
+  eat() {
+    return `${this._name} - Om Nom Nom Nom!`;
   }
 };
 ```
@@ -74,15 +74,15 @@ class Animal {
   }
 
   get age() {
-    return console.log(this._age * 11);
+    return this._age * 11;
   }
 }
 
 const Buddy = new Animal("Buddy");
 
-Buddy._age; // Returns 3
+console.log(Buddy._age); // Returns 3
 
-Buddy.age; // Returns 33
+console.log(Buddy.age); // Returns 33
 ```
 
 The set syntax binds an object property to a function to be called when there is an attempt to set that property. This is useful for setting a property of an object without directly mutating the property. This allows you to do many operations on the property before mutating it.
@@ -95,7 +95,7 @@ class Animal {
   }
 
   get age() {
-    return console.log(this._age * 11);
+    return this._age * 11;
   }
 
   set age(age) {
@@ -106,6 +106,28 @@ class Animal {
 const Buddy = new Animal("Buddy");
 
 Buddy.age = 5; // Sets the age to 55
+```
+
+## Method definitions
+
+You can define a method within the class body. Methods allows you to do many operations on the data before returning it. You can also get any property within the class as well.
+
+```javascript
+class Animal {
+  constructor(name, locationTag) {
+    this._name = name;
+    this._locationTag = Buffer.from(locationTag).toString("base64");
+    this._age = Math.floor(Math.random() * 15) + 1;
+  }
+
+  eat() {
+    return `${this._name} - Om Nom Nom Nom!`;
+  }
+
+  sleep() {
+    return `${this._name} - Zzzzzzzz!`;
+  }
+}
 ```
 
 ## Sub-classing with Extends

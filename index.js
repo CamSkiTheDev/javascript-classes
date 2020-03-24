@@ -1,46 +1,64 @@
 class Animal {
-    constructor(name) {
+    constructor(name, locationTag) {
         this._name = name
+        this._locationTag = Buffer.from(locationTag).toString('base64')
         this._age = Math.floor(Math.random() * 15) + 1
     }
 
     get name() {
-        return console.log(this._name)
+        return this._name
     }
 
     get age() {
-        return console.log(this._age)
+        return this._age
     }
 
-    set name(name) {
-        this._name = name
+    get locationTag() {
+        const decodedLocationTag = Buffer.from(this._locationTag, 'base64').toString()
+        return `Location Tag: ${decodedLocationTag}`
     }
 
-    speak() {
-        return console.log(`${this._name} makes a noise`)
+    set locationTag(locationTag) {
+        const encodedLocationTag = Buffer.from(locationTag).toString('base64')
+        this._locationTag = encodedLocationTag
+    }
+
+    set age(age) {
+        this._age = age
+    }
+
+    eat() {
+        return `${this._name} - Om Nom Nom Nom!`
+    }
+
+    sleep() {
+        return `${this._name} - Zzzzzzzz!`
     }
 }
 
 class Dog extends Animal {
-    constructor(name, age) {
-        super(name, age)
+    constructor(name, locationTag) {
+        super(name, locationTag)
     }
 
     speak() {
-        return console.log('Bark Bark')
+        return `Bark Bark`
     }
 }
 
 class Cat extends Animal {
-    constructor(name, age) {
-        super(name, age)
+    constructor(name, locationTag) {
+        super(name, locationTag)
     }
 
     speak() {
-        return console.log('Meow')
+        return 'Meow'
+    }
+
+    sleep() {
+        return `${this._name} - Time for a nap, I've only slept 18 hours.`
     }
 }
 
-const Buddy = new Dog('Buddy')
-const Sassy = new Cat('Sassy')
-
+const Max = new Dog('Max', 'G18')
+const Sassy = new Cat('Sassy', 'TT632')
